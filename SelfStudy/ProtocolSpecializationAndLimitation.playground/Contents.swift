@@ -1,23 +1,6 @@
 import Foundation
 
-protocol Visitable {
-    associatedtype Visitee = Visitor
-    func accept(_ visitor: Visitee)
-}
-
-protocol Visitor {
-    associatedtype Node = Visitable
-    func visit(_ place: Node)
-}
-
-protocol ComputerComponent  : Visitable where Visitee == any ComputerAccessor {}
-protocol ComputerAccessor   : Visitor where Node == any ComputerComponent {}
-protocol Building           : Visitable where Visitee == any BuildingVisitor {}
-protocol BuildingVisitor    : Visitor where Node == any Building {}
-
 /*
- protocol Apartment          : Building where Visitee == any Resident {}
- protocol Resident           : BuildingVisitor where Node == any Apartment {}
  -----------------------------------------------------------------------------
  Apartment protocol은 Building protocol을 만족하면서
  동시에 Visitee의 타입은 Resident protocol을 상속받는 자료형으로
@@ -42,42 +25,18 @@ protocol BuildingVisitor    : Visitor where Node == any Building {}
  -----------------------------------------------------------------------------
  */
 
-class CPU: ComputerComponent {
-    func accept(_ visitor: any ComputerAccessor) {
-        visitor.visit(self)
-    }
-}
-class Keyboard: ComputerComponent {
-    func accept(_ visitor: any ComputerAccessor) {
-        visitor.visit(self)
-    }
-}
-class Speaker: ComputerComponent {
-    func accept(_ visitor: any ComputerAccessor) {
-        visitor.visit(self)
-    }
-}
-class Mainboard: ComputerComponent {
-    func accept(_ visitor: any ComputerAccessor) {
-        visitor.visit(self)
-    }
-}
-class OS: ComputerComponent, ComputerAccessor {
-    func accept(_ visitor: any ComputerAccessor) {
-        visitor.visit(self)
-    }
-    
-    func visit(_ place: any ComputerComponent) {
-        print("OS visiting computer component: \(place)")
-    }
-}
-class ComputerEngineer: ComputerAccessor {
-    func visit(_ place: any ComputerComponent) {
-        print("ComputerEngineer visiting computer component: \(place)")
-    }
+protocol Visitable {
+    associatedtype Visitee = Visitor
+    func accept(_ visitor: Visitee)
 }
 
-let computer: [any ComputerComponent] = [CPU(), Keyboard(), Speaker(), Mainboard(), OS()]
-let engineer = ComputerEngineer()
+protocol Visitor {
+    associatedtype Node = Visitable
+    func visit(_ place: Node)
+}
 
-computer.forEach { $0.accept(engineer) }
+protocol Building           : Visitable where Visitee == any BuildingVisitor {}
+protocol BuildingVisitor    : Visitor where Node == any Building {}
+//protocol Apartment          : Building where Visitee == any Resident {}
+//protocol Resident           : BuildingVisitor where Node == any Apartment {}
+
