@@ -73,27 +73,3 @@ testAsParameter(param: ob)
 testAsParameter(param: ea)
 testAsParameter(param: eb)
 
-protocol GenericProtocol<T> {
-    associatedtype T
-}
-
-class GenericClass<T>: GenericProtocol {
-    typealias T = T
-}
-
-
-protocol SesameDeveloper {}
-protocol TalkPlusDeveloper {}
-class 희천: SesameDeveloper {}
-class 민제: SesameDeveloper {}
-class 톡플러스: TalkPlusDeveloper {}
-
-func doCoding<T: SesameDeveloper>(developer: T) {
-    print("코딩 완료")
-}
-
-func doCoding(dev: some SesameDeveloper) {
-    print("코딩 완료")
-}
-
-func doCodingTwo(dev: SesameDeveloper) {}
