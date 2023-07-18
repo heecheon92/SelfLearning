@@ -61,12 +61,12 @@ let bb = B()
 let c = C()
 let cc = C()
 
-var arr: [AnySesameProtocol] = [
+var arr: [AnySesameProtocol<Int>] = [
     AnySesameProtocol(a),
     AnySesameProtocol(aa),
     AnySesameProtocol(b),
     AnySesameProtocol(bb),
-    AnySesameProtocol(bb),
+//    AnySesameProtocol(c),     // <-- 이건 당연히 안된다...
 ]
 
 
