@@ -41,51 +41,54 @@ extension MemoryAddress where T: AnyObject {
     }
 }
 
-class TestClass {
-    var member: Int
-    var memberStruct: TestStruct
+enum WrapperType: String { case c = "class", s = "struct" }
+struct WrappedContent { let description = "this is a wrapped content" }
+struct Wrapped {
+    let type: WrapperType
     
-    lazy var description: String = {
-        print("lazy in class: \(MemoryAddress(of: self))")
-        self.member = 999
-        return "description accessed and changed the member variable"
+    init(_ t: WrapperType) { self.type = t }
+    
+    lazy var content: WrappedContent = {
+        var w = WrappedContent()
+        self.description = "\(w.description): \(self.type.rawValue)"
+        print("Content accessed: \(String(describing: self.description))")
+        return w
     }()
     
-    init(_ m: Int) {
-        self.member = m
-        self.memberStruct = TestStruct(m)
-        print("init class: \(MemoryAddress(of: self))")
+    var description: String? = nil
+}
+
+class TestClass {
+    private var wrapped = Wrapped(.c)
+    var description: String? { wrapped.description }
+    var content: WrappedContent { wrapped.content }
+    
+    init() {
+        print("\ninit class: \(MemoryAddress(of: self))")
     }
 }
 
 struct TestStruct {
-    var member: Int
+    private var wrapped = Wrapped(.s)
+    var description: String? { wrapped.description }
+    var content: WrappedContent { mutating get { wrapped.content } }
     
-    lazy var description: String = {
-        print("lazy in struct: \(MemoryAddress(of: &self))")
-        self.member = 999
-        return "description accessed and changed the member variable"
-    }()
-    
-    
-    init(_ m: Int) {
-        self.member = m
+    init() {
         print("init struct: \(MemoryAddress(of: &self))")
     }
 }
 
-// Init both class and struct with member property 1.
-var c = TestClass(1)
-var s = TestStruct(1)
+var c = TestClass()
+var s = TestStruct()
 
 print("\naddress class: \(MemoryAddress(of: c))")
 print("address struct: \(MemoryAddress(of: &s))\n")
 
-// Access lazy member "description" thereby mutating "member" property to 999
-print(c.description)
-print(s.description)
+print("\n\(String(describing: c.description))")
+print("\(String(describing: s.description))\n")
 
-print(c.member) // prints 999 -> OK I got it
-print(s.member) // prints 999 -> OK I got it
+print("\n\(String(describing: c.content))")   // Lazily load c.description
+print("\(String(describing: s.content))\n")   // Lazily load s.description
 
-print(c.memberStruct.member)  // prints 1 -> Not OK, why member property didn't mutate?
+print("\n\(String(describing: c.description))")
+print("\(String(describing: s.description))\n")
