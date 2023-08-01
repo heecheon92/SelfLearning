@@ -42,12 +42,19 @@ class Applicative<T>: Functor {
 /// and then eventually fails to build.
 ///
 ///     struct Box<T>: Applicative {
+///
 ///         let content: T
 ///         init(_ content: T) { self.content = content }
+///
+///         func map<V>(_ transform: ((T) -> V)) -> Box<V> {
+///             return Box<V>(transform(content))
+///         }
+///
 ///         func apply<V>(_ boxedThunk: Box<(T) -> V>) -> Box<V> {
 ///             return Box<V>(boxedThunk.content(content))
 ///         }
 ///     }
+///     
 
 class MayBe<T>: Applicative<T> {
     let value: T
