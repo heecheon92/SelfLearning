@@ -27,9 +27,9 @@ class Applicative<T>: Functor {
 }
 
 // MARK: - Applicative protocol declaration
-/// My attempt to create an applicative protocol
-/// Protocol declaration itself has not problem to compile but
-/// implementation has a problem.
+/// My attempt to create an applicative protocol.
+/// Protocol declaration itself does not have a problem to compile but
+/// it gets problematic once the conformance implementation is introduced.
 ///
 ///     protocol Applicative: Functor {
 ///         associatedtype A: Functor = Self
@@ -37,8 +37,8 @@ class Applicative<T>: Functor {
 ///     }
 ///
 // MARK: - Applicative protocol conformance
-/// It does not spit any syntax error so linquistically speaking,
-/// following Box implementation is flawed but takes too long for compiling
+/// It does not spit any syntax error so syntatically speaking,
+/// following Box implementation is not flawed but takes too long for compiling
 /// and then eventually fails to build.
 ///
 ///     struct Box<T>: Applicative {
