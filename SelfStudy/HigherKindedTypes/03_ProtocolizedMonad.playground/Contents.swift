@@ -12,6 +12,7 @@ protocol Monad: Functor {
     associatedtype M: Functor = Self
     
     func flatMap<V>(_ transform: ((T) -> M)) -> U where U.T == V
+    func flatMap<V>(_ transform: ((T) -> V)) -> U where U.T == V
 }
 
 struct MayBe<T>: Monad {
@@ -51,10 +52,10 @@ let fmaybeOptionalMaybeString  = fmaybeOptionalString.map { $0.map({ v in MayBe(
 
 let mmaybeInt                  = MayBe(1)
 let mmaybeString               = mmaybeInt.flatMap { MayBe("\($0)") }
-let mmaybeMaybeString          = mmaybeString.flatMap { MayBe($0) }
-let mmaybeOptionalString       = mmaybeString.flatMap { Optional<String>($0) }
+let mmaybeMaybeString          : MayBe<String> = mmaybeString.flatMap { MayBe($0) } // flatMap doesn't produce "MayBe<MayBe<String>>"
+let mmaybeOptionalString       : MayBe<Optional<String>> = mmaybeString.flatMap { Optional<String>($0) }
 let mmaybeMaybeOptionalString  = mmaybeMaybeString.flatMap { $0.flatMap({ v in Optional(v) }) }
-let mmaybeOptionalMaybeString  = mmaybeOptionalString.flatMap { $0.flatMap({ v in MayBe(v) }) }
+let mmaybeOptionalMaybeString  = mmaybeOptionalString.flatMap { $0 }
 
 print(fmaybeInt)
 print(fmaybeString)
