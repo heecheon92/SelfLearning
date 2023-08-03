@@ -53,5 +53,17 @@ list.forEach {
     print(resolveExistential($0))           // Not OK, Type 'any P' cannot conform to 'P'
     print(resolveExistentialToString($0))   // OK, prints the runtime-type in String
     
-    // Need to find a way to directly access $0.generic.
+    
 }
+
+// Need to find a way to directly access $0.generic.
+// UPDATE!
+// Currently there is not way to return concrete generic type
+// from type-erased existential. Accessing the generic via
+// generic function is fine but returning the accessed generic
+// is not possible.
+/// https://github.com/apple/swift/issues/67612
+/// When T or a T-rooted associated type appears in a non-covariant position in the result type,
+/// T cannot be bound to the underlying type of an existential value because there would be no way to represent the type-erased result.
+/// This is essentially the same property as descibed for the parameter types that prevents opening of existentials, as described above. For example:
+/// func cannotOpen7<T: P>(_ value: T) -> X<T> { /*...*/ } 
