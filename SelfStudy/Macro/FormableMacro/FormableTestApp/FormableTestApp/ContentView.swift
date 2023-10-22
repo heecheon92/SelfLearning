@@ -18,7 +18,7 @@ struct ContentView: View {
             // Form.derive($peron)
             /// We want the line above generate the code below during the compile time.
             
-            // Ideal Staert: Form.derive($person)
+            // Ideal Start: Form.derive($person)
             
             // input -> output
             
