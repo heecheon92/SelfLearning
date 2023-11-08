@@ -48,6 +48,22 @@ public struct FormableMacro: ExtensionMacro, MemberMacro {
 //
 //        return [extensionDecl]
         
+        /// ExtensionDeclSyntax
+        ///
+        /// ExtensionDeclSyntax allows "extension" declaration to be attached.
+        /// i.e.
+        ///
+        /// @FormBuilder struct Person {
+        ///   let name: String = ""
+        /// }
+        ///
+        /// Above struct declaration gets translated into
+        ///
+        /// struct Person {
+        ///   let name: String = ""
+        /// }
+        ///
+        /// extension Person: FormBuilder {}
         let formableExtension = try ExtensionDeclSyntax("extension \(type.trimmed): FormBuilder {}")
         return [formableExtension]
     }
