@@ -27,26 +27,14 @@ public struct StringifyMacro: ExpressionMacro {
 
 public struct FormableMacro: ExtensionMacro, MemberMacro {
     
-    // extension Person: FormBuilder { }
+    /// Implementation for
+    /// "@attached(extension, conformances: FormBuilder)"
     public static func expansion(of node: AttributeSyntax,  // <- Syntax of the attribute "@Formable"
                                  attachedTo declaration: some DeclGroupSyntax,  // <- struct Person { var name: String ; ... }
                                  providingExtensionsOf type: some TypeSyntaxProtocol,   // <- extension Person: ...
                                  conformingTo protocols: [TypeSyntax],
                                  in context: some MacroExpansionContext)  // <- Means of reporting diagnostics
     throws -> [ExtensionDeclSyntax] {
-        
-//        let decl: DeclSyntax = """
-//        extension Foo: FormBuilder {
-//            var foo: String { "foo" }
-//            func printFoo() { print(foo) }
-//        }
-//        """
-//        
-//        guard let extensionDecl = decl.as(ExtensionDeclSyntax.self) else {
-//          return []
-//        }
-//
-//        return [extensionDecl]
         
         /// ExtensionDeclSyntax
         ///
@@ -68,21 +56,81 @@ public struct FormableMacro: ExtensionMacro, MemberMacro {
         return [formableExtension]
     }
     
+    /// Implementation for
+    /// "@attached(member, names: named(makeFormValue))"
     public static func expansion(of node: AttributeSyntax,
                                  providingMembersOf declaration: some DeclGroupSyntax,
                                  in context: some MacroExpansionContext) throws -> [DeclSyntax] {
         // func makeFormValue...
         // func coolFunc...
         
-//        static func makeFormValue(_ label: String?, _ value: Binding<Person>) -> some View {
-//            Group {
-//                String.makeFormValue("Name", value.name)
-//                Int.makeFormValue("Age", value.age)
-//                Bool.makeFormValue("Is Alive", value.isAlive)
-//            }
-//        }
+        //        static func makeFormValue(_ label: String?, _ value: Binding<Person>) -> some View {
+        //            Group {
+        //                String.makeFormValue("Name", value.name)
+        //                Int.makeFormValue("Age", value.age)
+        //                Bool.makeFormValue("Is Alive", value.isAlive)
+        //            }
+        //        }
         
-        ["""
+        /// Excerpted from "\(raw: declaration.debugDescription)" via "@Formable struct Person { ... }" (refactor -> inline macro)
+        ///
+        ///     StructDeclSyntax
+        ///    ├─attributes: AttributeListSyntax
+        ///        │ ╰─[0]: AttributeSyntax
+        ///        │   ├─atSign: atSign
+        ///        │   ╰─attributeName: IdentifierTypeSyntax
+        ///        │     ╰─name: identifier("Formable")
+        ///    ├─modifiers: DeclModifierListSyntax
+        ///    ├─structKeyword: keyword(SwiftSyntax.Keyword.struct)
+        ///    ├─name: identifier("Person")
+        ///    ╰─memberBlock: MemberBlockSyntax
+        ///    ├─leftBrace: leftBrace
+        ///    ├─members: MemberBlockItemListSyntax
+        ///        │ ├─[0]: MemberBlockItemSyntax
+        ///        │ │ ╰─decl: VariableDeclSyntax
+        ///        │ │   ├─attributes: AttributeListSyntax
+        ///        │ │   ├─modifiers: DeclModifierListSyntax
+        ///        │ │   ├─bindingSpecifier: keyword(SwiftSyntax.Keyword.var)
+        ///        │ │   ╰─bindings: PatternBindingListSyntax
+        ///        │ │     ╰─[0]: PatternBindingSyntax
+        ///        │ │       ├─pattern: IdentifierPatternSyntax
+        ///        │ │       │ ╰─identifier: identifier("name")
+        ///        │ │       ╰─typeAnnotation: TypeAnnotationSyntax
+        ///        │ │         ├─colon: colon
+        ///        │ │         ╰─type: IdentifierTypeSyntax
+        ///        │ │           ╰─name: identifier("String")
+        ///        │ ├─[1]: MemberBlockItemSyntax
+        ///        │ │ ╰─decl: VariableDeclSyntax
+        ///        │ │   ├─attributes: AttributeListSyntax
+        ///        │ │   ├─modifiers: DeclModifierListSyntax
+        ///        │ │   ├─bindingSpecifier: keyword(SwiftSyntax.Keyword.var)
+        ///        │ │   ╰─bindings: PatternBindingListSyntax
+        ///        │ │     ╰─[0]: PatternBindingSyntax
+        ///        │ │       ├─pattern: IdentifierPatternSyntax
+        ///        │ │       │ ╰─identifier: identifier("age")
+        ///        │ │       ╰─typeAnnotation: TypeAnnotationSyntax
+        ///        │ │         ├─colon: colon
+        ///        │ │         ╰─type: IdentifierTypeSyntax
+        ///        │ │           ╰─name: identifier("Int")
+        ///        │ ╰─[2]: MemberBlockItemSyntax
+        ///        │   ╰─decl: VariableDeclSyntax
+        ///        │     ├─attributes: AttributeListSyntax
+        ///        │     ├─modifiers: DeclModifierListSyntax
+        ///        │     ├─bindingSpecifier: keyword(SwiftSyntax.Keyword.var)
+        ///        │     ╰─bindings: PatternBindingListSyntax
+        ///        │       ╰─[0]: PatternBindingSyntax
+        ///        │         ├─pattern: IdentifierPatternSyntax
+        ///        │         │ ╰─identifier: identifier("isAlive")
+        ///        │         ╰─typeAnnotation: TypeAnnotationSyntax
+        ///        │           ├─colon: colon
+        ///        │           ╰─type: IdentifierTypeSyntax
+        ///        │             ╰─name: identifier("Bool")
+        ///    ╰─rightBrace: rightBrace
+        ///
+        ///
+        ///
+        
+        return ["""
         static func makeFormValue(_ label: String?, _ value: Binding<Person>) -> some View {
             Group {
                 Text("Hello from macro world")
