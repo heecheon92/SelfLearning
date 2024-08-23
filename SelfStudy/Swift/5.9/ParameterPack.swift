@@ -79,3 +79,19 @@ where TFirstPayload: Equatable, repeat each TPayload: Equatable
 /// Compare the following two function calls
 queryPackWithAtLeastOneArg()
 queryPackWithAtLeastOneArg(r1, r2, r3, r4, r5)
+
+/// More elaborate use case.
+protocol RequestProtocol {
+  associatedtype Input
+  associatedtype Output
+  func evaluate(_ input: Input) throws -> Output
+}
+
+struct Evaluator<each TRequest: RequestProtocol> {
+  var item: (repeat each TRequest)
+  func query(_ input: repeat (each TRequest).Input) -> (repeat (each Request).Output)? {
+    do {
+      return (repeat try (each item).evaluate(each input))
+    } catch { return nil }
+  }
+}
