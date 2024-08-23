@@ -14,7 +14,7 @@ func query<TPayload>(varArgs: Request<TPayload>...) -> [TPayload]
 /// One way to solve the problem above where we can pass different TPayload types
 /// and match the number of responses with the number of requests is to use tuple and
 /// function overloading.
-@_silgen_name("query")  // To supporess declaration without implementation warning
+@_silgen_name("query")  // To suppress declaration without implementation warning
 @discardableResult  // To suppress warning of unused result
 func query<TPayload>(_ item: Request<TPayload>) -> TPayload
 
