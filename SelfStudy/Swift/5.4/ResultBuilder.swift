@@ -135,6 +135,31 @@ print(makeSentence5())
 // 9
 // Lift off!
 
+@resultBuilder
+struct SentenceBuilder {
+  static func buildBlock(_ parts: String...) -> String {
+    parts.joined(separator: " ")
+  }
+
+  static func buildExpression(_ expression: String) -> String {
+    expression
+  }
+}
+
+// MARK: - makeSentence6
+func makeSentence6(@SentenceBuilder _ content: () -> String) -> String {
+  content()
+}
+
+let sentence6 = makeSentence6 {
+  "Hi"
+  "My name is"
+  "John Doe"
+}
+print(sentence6)
+// prints:
+// Hi My name is John Doe
+
 /// building methods
 /// - buildBlock(_ components: Component...) -> Component is used to build combined results for statement blocks. It is required to be a static method in every result builder.
 /// - buildOptional(_ component: Component?) -> Component is used to handle a partial result that may or may not be available in a given execution. When a result builder provides buildOptional(_:), the transformed function can include if statements without an else.
