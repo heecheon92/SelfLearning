@@ -21,8 +21,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4BDF76262E84FCF90023FF97 /* CounterFeature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CounterFeature.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BF550452E8512FE00BA1989 /* CounterFeatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CounterFeatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BDF76262E84FCF90023FF97 /* AppFeature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppFeature.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BF550452E8512FE00BA1989 /* AppFeatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppFeatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -69,8 +69,8 @@
 		4BDF76272E84FCF90023FF97 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4BDF76262E84FCF90023FF97 /* CounterFeature.app */,
-				4BF550452E8512FE00BA1989 /* CounterFeatureTests.xctest */,
+				4BDF76262E84FCF90023FF97 /* AppFeature.app */,
+				4BF550452E8512FE00BA1989 /* AppFeatureTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,9 +78,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4BDF76252E84FCF90023FF97 /* CounterFeature */ = {
+		4BDF76252E84FCF90023FF97 /* AppFeature */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4BDF76342E84FCFA0023FF97 /* Build configuration list for PBXNativeTarget "CounterFeature" */;
+			buildConfigurationList = 4BDF76342E84FCFA0023FF97 /* Build configuration list for PBXNativeTarget "AppFeature" */;
 			buildPhases = (
 				4BDF76222E84FCF90023FF97 /* Sources */,
 				4BDF76232E84FCF90023FF97 /* Frameworks */,
@@ -93,17 +93,17 @@
 			fileSystemSynchronizedGroups = (
 				4BDF76282E84FCF90023FF97 /* CounterFeature */,
 			);
-			name = CounterFeature;
+			name = AppFeature;
 			packageProductDependencies = (
 				4BDF76382E84FD9A0023FF97 /* ComposableArchitecture */,
 			);
 			productName = CounterFeature;
-			productReference = 4BDF76262E84FCF90023FF97 /* CounterFeature.app */;
+			productReference = 4BDF76262E84FCF90023FF97 /* AppFeature.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4BF550442E8512FE00BA1989 /* CounterFeatureTests */ = {
+		4BF550442E8512FE00BA1989 /* AppFeatureTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4BF5504B2E8512FE00BA1989 /* Build configuration list for PBXNativeTarget "CounterFeatureTests" */;
+			buildConfigurationList = 4BF5504B2E8512FE00BA1989 /* Build configuration list for PBXNativeTarget "AppFeatureTests" */;
 			buildPhases = (
 				4BF550412E8512FE00BA1989 /* Sources */,
 				4BF550422E8512FE00BA1989 /* Frameworks */,
@@ -117,11 +117,11 @@
 			fileSystemSynchronizedGroups = (
 				4BF550462E8512FE00BA1989 /* CounterFeatureTests */,
 			);
-			name = CounterFeatureTests;
+			name = AppFeatureTests;
 			packageProductDependencies = (
 			);
 			productName = CounterFeatureTests;
-			productReference = 4BF550452E8512FE00BA1989 /* CounterFeatureTests.xctest */;
+			productReference = 4BF550452E8512FE00BA1989 /* AppFeatureTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +143,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4BDF76212E84FCF90023FF97 /* Build configuration list for PBXProject "CounterFeature" */;
+			buildConfigurationList = 4BDF76212E84FCF90023FF97 /* Build configuration list for PBXProject "AppFeature" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -160,8 +160,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4BDF76252E84FCF90023FF97 /* CounterFeature */,
-				4BF550442E8512FE00BA1989 /* CounterFeatureTests */,
+				4BDF76252E84FCF90023FF97 /* AppFeature */,
+				4BF550442E8512FE00BA1989 /* AppFeatureTests */,
 			);
 		};
 /* End PBXProject section */
@@ -203,7 +203,7 @@
 /* Begin PBXTargetDependency section */
 		4BF5504A2E8512FE00BA1989 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4BDF76252E84FCF90023FF97 /* CounterFeature */;
+			target = 4BDF76252E84FCF90023FF97 /* AppFeature */;
 			targetProxy = 4BF550492E8512FE00BA1989 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -406,7 +406,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CounterFeature.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CounterFeature";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppFeature.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppFeature";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Debug;
@@ -429,7 +429,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CounterFeature.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CounterFeature";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppFeature.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppFeature";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
@@ -437,7 +437,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4BDF76212E84FCF90023FF97 /* Build configuration list for PBXProject "CounterFeature" */ = {
+		4BDF76212E84FCF90023FF97 /* Build configuration list for PBXProject "AppFeature" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BDF76322E84FCFA0023FF97 /* Debug */,
@@ -446,7 +446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4BDF76342E84FCFA0023FF97 /* Build configuration list for PBXNativeTarget "CounterFeature" */ = {
+		4BDF76342E84FCFA0023FF97 /* Build configuration list for PBXNativeTarget "AppFeature" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BDF76352E84FCFA0023FF97 /* Debug */,
@@ -455,7 +455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4BF5504B2E8512FE00BA1989 /* Build configuration list for PBXNativeTarget "CounterFeatureTests" */ = {
+		4BF5504B2E8512FE00BA1989 /* Build configuration list for PBXNativeTarget "AppFeatureTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BF5504C2E8512FE00BA1989 /* Debug */,
